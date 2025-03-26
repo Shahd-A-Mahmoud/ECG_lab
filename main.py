@@ -1,4 +1,7 @@
 import sys
+
+from PyQt5.QtCore import QSize
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton
 from PyQt5.uic import loadUi
 from denoising.non_local_means import Non_local_means
@@ -18,8 +21,46 @@ class MainWindow(QMainWindow):
 
         self.upload_button = self.findChild(QPushButton, "Upload")
         self.upload_button.clicked.connect(self.upload_data)
+        # fix the icon sizes
+        icon_upload = QIcon("Deliveriables/upload (1).ico")
+        pixmap_upload = icon_upload.pixmap(128, 128)  # Force a larger resolution from ICO file
+        self.upload_button.setIcon(QIcon(pixmap_upload))
+        self.upload_button.setIconSize(QSize(80, 80))
 
-        self.upload_button.setIconSize(QtCore.QSize(180, 180))
+
+        self.HeartRateIcon = self.findChild(QPushButton,"HeartRateIcon")
+        icon_heart = QIcon("Deliveriables/heartrate.ico")
+        pixmap_heart = icon_heart.pixmap(128, 128)  # Force a larger resolution from ICO file
+        self.HeartRateIcon.setIcon(QIcon(pixmap_heart))
+        self.HeartRateIcon.setIconSize(QSize(90, 90))
+
+        self.pressureIcon = self.findChild(QPushButton, "pressureIcon")
+        icon_pressure = QIcon("Deliveriables/pressure.ico")
+        pixmap_pressure = icon_pressure.pixmap(256, 256)  # Force a larger resolution from ICO file
+        self.pressureIcon.setIcon(QIcon(pixmap_pressure))
+        self.pressureIcon.setIconSize(QSize(160, 160))
+
+        self.spo2Icon = self.findChild(QPushButton, "spo2Icon")
+        icon_spo2 = QIcon("Deliveriables/spo2 (2).ico")
+        pixmap_spo2 = icon_spo2.pixmap(256, 256)  # Force a larger resolution from ICO file
+        self.spo2Icon.setIcon(QIcon(pixmap_spo2))
+        self.spo2Icon.setIconSize(QSize(150, 150))
+
+        self.temperatureIcon = self.findChild(QPushButton, "TempIcon")
+        icon_temp = QIcon("Deliveriables/temperature (1).ico")
+        pixmap_temp = icon_temp.pixmap(256, 256)  # Force a larger resolution from ICO file
+        self.temperatureIcon.setIcon(QIcon(pixmap_temp))
+        self.temperatureIcon.setIconSize(QSize(1000, 1000))
+
+        ## Alarm Button
+
+        self.alarmButton = self.findChild(QPushButton, "AlarmButton")
+        icon_alarm = QIcon("Deliveriables/9-removebg-preview.ico")
+        pixmap_alarm = icon_alarm.pixmap(256, 256)  # Force a larger resolution from ICO file
+        self.alarmButton.setIcon(QIcon(pixmap_alarm))
+        self.alarmButton.setIconSize(QSize(1000, 1000))
+
+
 
         self.data = None
         self.non_local_means = Non_local_means(self.data)

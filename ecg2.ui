@@ -27,7 +27,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>C:/Users/Lenovo/Downloads/ecgLab (3).ico</normaloff>C:/Users/Lenovo/Downloads/ecgLab (3).ico</iconset>
+    <normaloff>Deliveriables/heartrate.ico</normaloff>Deliveriables/heartrate.ico</iconset>
   </property>
   <property name="iconSize">
    <size>
@@ -862,7 +862,7 @@ font-weight: bold;
              <rect>
               <x>20</x>
               <y>60</y>
-              <width>181</width>
+              <width>131</width>
               <height>41</height>
              </rect>
             </property>
@@ -878,7 +878,7 @@ font-weight: bold;
 </string>
             </property>
             <property name="text">
-             <string>Heart Rate :</string>
+             <string>Heart Rate </string>
             </property>
            </widget>
            <widget class="QLabel" name="label_4">
@@ -902,7 +902,7 @@ font-weight: bold;
 </string>
             </property>
             <property name="text">
-             <string>Pressure :</string>
+             <string>Pressure </string>
             </property>
            </widget>
            <widget class="QLabel" name="label_6">
@@ -926,7 +926,7 @@ font-weight: bold;
 </string>
             </property>
             <property name="text">
-             <string>SpO2 :</string>
+             <string>SpO2 </string>
             </property>
            </widget>
            <widget class="QLabel" name="label_16">
@@ -950,7 +950,7 @@ font-weight: bold;
 </string>
             </property>
             <property name="text">
-             <string>Temperature :</string>
+             <string>Temperature </string>
             </property>
            </widget>
            <widget class="QWidget" name="widget_15" native="true">
