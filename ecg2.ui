@@ -88,7 +88,7 @@ QPushButton::icon {
          </property>
          <property name="icon">
           <iconset>
-           <normaloff>C:/Users/Lenovo/Downloads/upload (1).ico</normaloff>C:/Users/Lenovo/Downloads/upload (1).ico</iconset>
+           <normaloff>Deliveriables/upload (1).ico</normaloff>Deliveriables/upload (1).ico</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -377,9 +377,9 @@ QPushButton::icon {
                 <widget class="QLabel" name="label_14">
                  <property name="geometry">
                   <rect>
-                   <x>30</x>
+                   <x>10</x>
                    <y>0</y>
-                   <width>151</width>
+                   <width>191</width>
                    <height>21</height>
                   </rect>
                  </property>
@@ -420,10 +420,10 @@ QPushButton::icon {
          <widget class="QLabel" name="Name">
           <property name="geometry">
            <rect>
-            <x>60</x>
+            <x>40</x>
             <y>260</y>
-            <width>161</width>
-            <height>20</height>
+            <width>181</width>
+            <height>41</height>
            </rect>
           </property>
           <property name="font">
@@ -446,10 +446,10 @@ color:#3f446f;</string>
          <widget class="QLabel" name="label_3">
           <property name="geometry">
            <rect>
-            <x>110</x>
+            <x>100</x>
             <y>300</y>
-            <width>49</width>
-            <height>16</height>
+            <width>71</width>
+            <height>31</height>
            </rect>
           </property>
           <property name="styleSheet">
@@ -470,10 +470,10 @@ color:#3f446f;
          <widget class="QLabel" name="id">
           <property name="geometry">
            <rect>
-            <x>90</x>
+            <x>80</x>
             <y>340</y>
             <width>91</width>
-            <height>16</height>
+            <height>21</height>
            </rect>
           </property>
           <property name="styleSheet">
@@ -489,10 +489,10 @@ color:#ce0000;</string>
          <widget class="QLabel" name="label_5">
           <property name="geometry">
            <rect>
-            <x>88</x>
-            <y>390</y>
-            <width>71</width>
-            <height>20</height>
+            <x>70</x>
+            <y>379</y>
+            <width>121</width>
+            <height>41</height>
            </rect>
           </property>
           <property name="styleSheet">
@@ -511,10 +511,10 @@ color:#3f446f;
          <widget class="QLabel" name="bedNo">
           <property name="geometry">
            <rect>
-            <x>100</x>
+            <x>90</x>
             <y>430</y>
             <width>91</width>
-            <height>16</height>
+            <height>21</height>
            </rect>
           </property>
           <property name="styleSheet">
@@ -530,10 +530,10 @@ color:#ce0000;</string>
          <widget class="QLabel" name="label_7">
           <property name="geometry">
            <rect>
-            <x>80</x>
-            <y>480</y>
-            <width>81</width>
-            <height>20</height>
+            <x>70</x>
+            <y>460</y>
+            <width>131</width>
+            <height>41</height>
            </rect>
           </property>
           <property name="styleSheet">
@@ -552,10 +552,10 @@ color:#3f446f;
          <widget class="QLabel" name="admitted">
           <property name="geometry">
            <rect>
-            <x>70</x>
+            <x>60</x>
             <y>510</y>
-            <width>121</width>
-            <height>31</height>
+            <width>161</width>
+            <height>41</height>
            </rect>
           </property>
           <property name="styleSheet">
@@ -571,7 +571,7 @@ color:#ce0000;</string>
          <widget class="QLabel" name="label_9">
           <property name="geometry">
            <rect>
-            <x>100</x>
+            <x>90</x>
             <y>560</y>
             <width>71</width>
             <height>31</height>
@@ -593,10 +593,10 @@ color:#3f446f;
          <widget class="QLabel" name="age">
           <property name="geometry">
            <rect>
-            <x>90</x>
+            <x>70</x>
             <y>600</y>
             <width>121</width>
-            <height>31</height>
+            <height>41</height>
            </rect>
           </property>
           <property name="styleSheet">
@@ -695,7 +695,7 @@ QSlider::sub-page:horizontal {
 </string>
           </property>
           <property name="orientation">
-           <enum>Qt::Orientation::Horizontal</enum>
+           <enum>Qt::Horizontal</enum>
           </property>
          </widget>
          <widget class="QLabel" name="Name_2">
@@ -836,7 +836,7 @@ font-weight: bold;
             <widget class="QLabel" name="label_15">
              <property name="geometry">
               <rect>
-               <x>60</x>
+               <x>30</x>
                <y>0</y>
                <width>151</width>
                <height>21</height>
@@ -862,7 +862,7 @@ font-weight: bold;
              <rect>
               <x>20</x>
               <y>60</y>
-              <width>151</width>
+              <width>181</width>
               <height>41</height>
              </rect>
             </property>
@@ -886,7 +886,7 @@ font-weight: bold;
              <rect>
               <x>20</x>
               <y>200</y>
-              <width>151</width>
+              <width>181</width>
               <height>41</height>
              </rect>
             </property>
@@ -934,7 +934,7 @@ font-weight: bold;
              <rect>
               <x>20</x>
               <y>490</y>
-              <width>151</width>
+              <width>181</width>
               <height>41</height>
              </rect>
             </property>
@@ -956,9 +956,9 @@ font-weight: bold;
            <widget class="QWidget" name="widget_15" native="true">
             <property name="geometry">
              <rect>
-              <x>50</x>
+              <x>20</x>
               <y>120</y>
-              <width>151</width>
+              <width>191</width>
               <height>51</height>
              </rect>
             </property>
@@ -970,9 +970,9 @@ font-weight: bold;
             <widget class="QLabel" name="label_17">
              <property name="geometry">
               <rect>
-               <x>80</x>
+               <x>100</x>
                <y>0</y>
-               <width>51</width>
+               <width>91</width>
                <height>51</height>
               </rect>
              </property>
@@ -995,9 +995,9 @@ font-weight: bold;
              <property name="geometry">
               <rect>
                <x>30</x>
-               <y>20</y>
+               <y>0</y>
                <width>41</width>
-               <height>16</height>
+               <height>51</height>
               </rect>
              </property>
              <property name="styleSheet">
@@ -1019,9 +1019,9 @@ font-weight: bold;
            <widget class="QWidget" name="widget_16" native="true">
             <property name="geometry">
              <rect>
-              <x>50</x>
+              <x>20</x>
               <y>260</y>
-              <width>151</width>
+              <width>191</width>
               <height>51</height>
              </rect>
             </property>
@@ -1033,9 +1033,9 @@ font-weight: bold;
             <widget class="QLabel" name="label_18">
              <property name="geometry">
               <rect>
-               <x>70</x>
+               <x>100</x>
                <y>0</y>
-               <width>71</width>
+               <width>91</width>
                <height>51</height>
               </rect>
              </property>
@@ -1058,9 +1058,9 @@ font-weight: bold;
              <property name="geometry">
               <rect>
                <x>30</x>
-               <y>20</y>
-               <width>41</width>
-               <height>16</height>
+               <y>0</y>
+               <width>71</width>
+               <height>51</height>
               </rect>
              </property>
              <property name="styleSheet">
@@ -1082,9 +1082,9 @@ font-weight: bold;
            <widget class="QWidget" name="widget_17" native="true">
             <property name="geometry">
              <rect>
-              <x>50</x>
+              <x>20</x>
               <y>400</y>
-              <width>151</width>
+              <width>191</width>
               <height>51</height>
              </rect>
             </property>
@@ -1096,7 +1096,7 @@ font-weight: bold;
             <widget class="QLabel" name="label_19">
              <property name="geometry">
               <rect>
-               <x>80</x>
+               <x>120</x>
                <y>0</y>
                <width>51</width>
                <height>51</height>
@@ -1121,9 +1121,9 @@ font-weight: bold;
              <property name="geometry">
               <rect>
                <x>40</x>
-               <y>20</y>
+               <y>0</y>
                <width>41</width>
-               <height>16</height>
+               <height>51</height>
               </rect>
              </property>
              <property name="styleSheet">
@@ -1145,9 +1145,9 @@ font-weight: bold;
            <widget class="QWidget" name="widget_18" native="true">
             <property name="geometry">
              <rect>
-              <x>50</x>
+              <x>20</x>
               <y>550</y>
-              <width>151</width>
+              <width>191</width>
               <height>51</height>
              </rect>
             </property>
@@ -1159,7 +1159,7 @@ font-weight: bold;
             <widget class="QLabel" name="label_20">
              <property name="geometry">
               <rect>
-               <x>90</x>
+               <x>130</x>
                <y>0</y>
                <width>31</width>
                <height>51</height>
@@ -1184,9 +1184,9 @@ font-weight: bold;
              <property name="geometry">
               <rect>
                <x>40</x>
-               <y>20</y>
+               <y>0</y>
                <width>41</width>
-               <height>16</height>
+               <height>51</height>
               </rect>
              </property>
              <property name="styleSheet">
@@ -1334,19 +1334,19 @@ font-weight: bold;
              </size>
             </property>
            </widget>
+           <zorder>label_2</zorder>
            <zorder>label_16</zorder>
            <zorder>TempIcon</zorder>
            <zorder>label_4</zorder>
            <zorder>pressureIcon</zorder>
+           <zorder>HeartRateIcon</zorder>
            <zorder>widget_14</zorder>
-           <zorder>label_2</zorder>
            <zorder>label_6</zorder>
            <zorder>widget_15</zorder>
            <zorder>widget_16</zorder>
            <zorder>widget_17</zorder>
            <zorder>widget_18</zorder>
            <zorder>Spo2Icon</zorder>
-           <zorder>HeartRateIcon</zorder>
            <zorder>spo2Icon</zorder>
           </widget>
          </item>
@@ -1358,10 +1358,10 @@ font-weight: bold;
     <item>
      <spacer name="verticalSpacer">
       <property name="orientation">
-       <enum>Qt::Orientation::Vertical</enum>
+       <enum>Qt::Vertical</enum>
       </property>
       <property name="sizeType">
-       <enum>QSizePolicy::Policy::Minimum</enum>
+       <enum>QSizePolicy::Minimum</enum>
       </property>
       <property name="sizeHint" stdset="0">
        <size>

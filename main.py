@@ -6,18 +6,20 @@ from PyQt5 import QtWidgets, uic
 import numpy as np
 from scipy import signal
 import pandas as pd
-from statsmodels.nonparametric.smoothers_lowess import lowess
-
+# from statsmodels.nonparametric.smoothers_lowess import lowess
+from PyQt5 import QtWidgets, QtGui, QtCore
 
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         # loadUi('ecg.2ui.ui', self)
-        uic.loadUi('ecg.2ui.ui', self)
+        uic.loadUi('ecg2.ui', self)
 
         self.upload_button = self.findChild(QPushButton, "Upload")
         self.upload_button.clicked.connect(self.upload_data)
+
+        self.upload_button.setIconSize(QtCore.QSize(180, 180))
 
         self.data = None
         self.non_local_means = Non_local_means(self.data)
