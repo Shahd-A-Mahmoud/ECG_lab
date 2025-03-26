@@ -6,7 +6,7 @@ class Non_local_means():
     def __init__(self, data):
         self.data = data
 
-    def apply_non_local_means(self, noise_var, window_size, patch_size):
+    def apply_non_local_means(self, data, noise_var, window_size, patch_size):
         # noise_var --> controls denoising strength
         # window size (how far to look for similar patches) /  5 means look 5 steps left & right
         # if window_size is a single number, make it a range / 3 means compare 3 point segments
@@ -16,7 +16,7 @@ class Non_local_means():
         else:
             Pvec = window_size
 
-        data = np.array(self.data)
+        data = np.array(data)
         n = len(data)
         denoised_signal = np.empty(n)
         denoised_signal[:] = np.nan

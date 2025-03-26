@@ -42,8 +42,8 @@ class MainWindow(QMainWindow):
 
         # applying non_local_means
         noise_variance = 0.1
-        window_size = 5  # Search window
-        patch_size = 3  # Patch half-width
+        window_size = 5
+        patch_size = 3
         denoised_signal = self.non_local_means.apply_non_local_means(baseline_removed, noise_variance, window_size, patch_size)
 
         return denoised_signal
