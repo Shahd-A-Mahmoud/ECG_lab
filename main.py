@@ -3,7 +3,7 @@ from PyQt5 import QtWidgets, uic
 import sys
 from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QFileDialog
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QFileDialog, QComboBox
 from PyQt5.uic import loadUi
 from denoising.non_local_means import Non_local_means
 import numpy as np
@@ -83,6 +83,9 @@ class MainWindow(QMainWindow):
         self.ecg_widget.setLayout(layout)
         self.figure.set_facecolor("#d2d1d1")
 
+        self.lead_selector = self.findChild(QComboBox, "comboBoxLeads")
+        self.lead_selector.currentIndexChanged.connect(self.plot_denoised_data)
+
 
     def upload_data(self):
         file_path, _ = QFileDialog.getOpenFileName(self, "Open ECG Data File", "", "CSV Files (*.csv);;All Files (*)")
@@ -104,7 +107,12 @@ class MainWindow(QMainWindow):
                 print(f"original shape{df.shape}")
                 print(f"denoised shape{self.denoised_data.shape}")
 
-                self.plot_denoised_data()
+                self.lead_selector.clear()
+                self.lead_selector.addItems(self.denoised_data.columns.tolist())
+
+                if self.denoised_data.columns.size > 0:
+                    self.lead_selector.setCurrentIndex(0)
+                    self.plot_denoised_data()
 
             except Exception as e:
                 print(f"error loading file: {str(e)}")
@@ -155,14 +163,14 @@ class MainWindow(QMainWindow):
         ax.set_facecolor("#d2d1d1")
 
 
-        # Assuming we're plotting all leads (I, II, III, aVR, aVL, aVF, V1-V6)
         # time = np.arange(len(self.denoised_data)) / 500  # Assuming fs=500 Hz
-        # for column in self.denoised_data.columns:
-        #     ax.plot(time, self.denoised_data[column], label=column)
+        # first_lead = self.denoised_data.columns[0]  # Get the name of the first column (e.g., "I")
+        # ax.plot(time, self.denoised_data[first_lead], label="Lead I", color='blue')
 
-        time = np.arange(len(self.denoised_data)) / 500  # Assuming fs=500 Hz
-        first_lead = self.denoised_data.columns[0]  # Get the name of the first column (e.g., "I")
-        ax.plot(time, self.denoised_data[first_lead], label="Lead I", color='blue')
+        time = np.arange(len(self.denoised_data)) / 500
+
+        selected_lead = self.lead_selector.currentText()
+        ax.plot(time, self.denoised_data[selected_lead], label=selected_lead, color='blue')
 
         ax.set_xlabel('Time (s)')
         ax.set_ylabel('Amplitude (mV)')
