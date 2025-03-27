@@ -14,7 +14,7 @@ def classify_ecg(ecg_signal, sampling_rate=500):
     # Compute HRV metrics
     hrv_features = nk.hrv_time(r_peaks, sampling_rate=sampling_rate)
 
-    # ECG delineation (extract P-waves, QRS, etc.)
+    # ECG delineation
     delineate_signals, delineate_info = nk.ecg_delineate(ecg_signal, r_peaks, sampling_rate=sampling_rate, method="peak")
 
     # Extract Features
@@ -24,36 +24,40 @@ def classify_ecg(ecg_signal, sampling_rate=500):
     hr = features.get("ECG_Rate_Mean", [np.nan])[0]
     std_rr = hrv_features.get("HRV_SDNN", [np.nan])[0]
 
-    # Extract PR Interval & QRS Duration from delineation
+    # Extract PR Interval & QRS Duration
     pr_interval = delineate_info.get("ECG_PQ_Mean", np.nan)
     qrs_duration = delineate_info.get("ECG_QRS_Mean", np.nan)
 
     # Infer P-wave presence
     p_wave_presence = not np.isnan(pr_interval)
 
-    # Debugging Output
-    print(f"[DEBUG] HR (BPM): {hr:.2f}")
-    print(f"[DEBUG] HRV SDNN (ms): {std_rr:.2f}")
-    print(f"[DEBUG] PR Interval (ms): {pr_interval if not np.isnan(pr_interval) else 'N/A'}")
-    print(f"[DEBUG] QRS Duration (ms): {qrs_duration if not np.isnan(qrs_duration) else 'N/A'}")
-    print(f"[DEBUG] P-Wave Presence: {p_wave_presence}")
-
     # Classification logic
     if std_rr > 50 and hr > 100 and not p_wave_presence:
-        return "Atrial Fibrillation"
+        diagnosis = "Atrial Fibrillation"
     elif 150 <= hr <= 250 and 20 < std_rr < 30 or p_wave_presence:
-        return "Atrial Tachycardia"
+        diagnosis = "Atrial Tachycardia"
     elif 60 <= hr <= 100 or p_wave_presence:
-        return "Sinus Rhythm"
+        diagnosis = "Sinus Rhythm"
     elif 100 < hr < 150 and std_rr < 30 or p_wave_presence:
-        return "Sinus Tachycardia"
+        diagnosis = "Sinus Tachycardia"
     elif hr > 180 and std_rr < 20 and not p_wave_presence:
-        return "Supraventricular Tachycardia"
+        diagnosis = "Supraventricular Tachycardia"
     else:
-        return "Unclassified"
+        diagnosis = "Unclassified"
+
+    # Return both HR and diagnosis as a dictionary
+    # return {
+    #     "heart_rate": hr,
+    #     "diagnosis": diagnosis,
+    #     "hrv_sdnn": std_rr,
+    #     "pr_interval": pr_interval,
+    #     "qrs_duration": qrs_duration,
+    #     "p_wave_presence": p_wave_presence
+    # }
+    return diagnosis, hr
 
 # Load ECG Data
-df = pd.read_csv("../data/filtered/SVT/MUSE_20180111_155633_99000.csv", header=None)
+df = pd.read_csv("Equipment II/ECG_lab/data/Atrial Tachtcardia (AT)/MUSE_20180111_170414_84000.csv", header=None)
 
 # Ensure numeric conversion
 df = df.apply(pd.to_numeric, errors='coerce').dropna()
@@ -62,5 +66,6 @@ df = df.apply(pd.to_numeric, errors='coerce').dropna()
 ecg_signal = df.iloc[:, 1].values
 
 # Detect arrhythmia
-classification = classify_ecg(ecg_signal)
+classification, hr = classify_ecg(ecg_signal)
 print("Detected Arrhythmia:", classification)
+print(hr)

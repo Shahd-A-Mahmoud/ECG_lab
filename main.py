@@ -15,11 +15,15 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtCore import QUrl
+from processing.processing import classify_ecg
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
-        uic.loadUi('ecg2.ui', self)
+        uic.loadUi('Equipment II/ECG_lab/ecg2.ui', self)
+
+        self.heart_rate = 0
+        self.diagnosis = "Unclassified"
 
         self.upload_button = self.findChild(QPushButton, "Upload")
         self.upload_button.clicked.connect(self.upload_data)
@@ -29,12 +33,13 @@ class MainWindow(QMainWindow):
         self.upload_button.setIcon(QIcon(pixmap_upload))
         self.upload_button.setIconSize(QSize(80, 80))
 
-
         self.HeartRateIcon = self.findChild(QPushButton,"HeartRateIcon")
         icon_heart = QIcon("Deliveriables/heartrate.ico")
         pixmap_heart = icon_heart.pixmap(128, 128)  
         self.HeartRateIcon.setIcon(QIcon(pixmap_heart))
         self.HeartRateIcon.setIconSize(QSize(90, 90))
+        self.heartRateValueLabel = self.findChild(QtWidgets.QLabel, "temperatureLabel_2")
+        self.heartRateValueLabel.setText(f"{self.heart_rate:.0f}")
 
         self.pressureIcon = self.findChild(QPushButton, "pressureIcon")
         icon_pressure = QIcon("Deliveriables/pressure.ico")
@@ -55,7 +60,6 @@ class MainWindow(QMainWindow):
         self.temperatureIcon.setIconSize(QSize(1000, 1000))
 
         ## Alarm Button
-
         self.alarmButton = self.findChild(QPushButton, "AlarmButton")
         icon_alarm = QIcon("Deliveriables/9-removebg-preview.ico")
         pixmap_alarm = icon_alarm.pixmap(256, 256)  
@@ -66,7 +70,7 @@ class MainWindow(QMainWindow):
 
         # Initialize the alarm sound player
         self.alarmPlayer = QMediaPlayer()
-        alarm_sound_url = QUrl.fromLocalFile("Deliveriables/alarm.mp3")  
+        alarm_sound_url = QUrl.fromLocalFile("Equipment II/ECG_lab/Deliveriables/alarm.mp3")  
         self.alarmPlayer.setMedia(QMediaContent(alarm_sound_url))
          # Flag make it open if there is an aryh detected
         self.alarmPlaying = False
@@ -74,6 +78,9 @@ class MainWindow(QMainWindow):
         self.data = None
         self.non_local_means = None
         self.denoised_data = None
+
+        self.arrhythmiaLabel = self.findChild(QtWidgets.QLabel, "arrhythmiaLabel")
+        self.arrhythmiaLabel.setText(self.diagnosis)
 
         self.ecg_widget = self.findChild(QtWidgets.QWidget, "EcgWidget")
         self.figure = Figure()
@@ -88,6 +95,9 @@ class MainWindow(QMainWindow):
 
 
     def upload_data(self):
+        self.diagnosis = "Unclassified"
+        self.heart_rate = 0 
+        
         file_path, _ = QFileDialog.getOpenFileName(self, "Open ECG Data File", "", "CSV Files (*.csv);;All Files (*)")
         if file_path:
             try:
@@ -113,6 +123,13 @@ class MainWindow(QMainWindow):
                 if self.denoised_data.columns.size > 0:
                     self.lead_selector.setCurrentIndex(0)
                     self.plot_denoised_data()
+                    self.diagnosis, self.heart_rate = classify_ecg(self.denoised_data.iloc[:, 1].values)
+                    self.heartRateValueLabel.setText(f"{self.heart_rate:.0f}")
+                    self.arrhythmiaLabel.setText(self.diagnosis)
+
+                    if self.diagnosis != "Unclassified" and self.diagnosis != "Sinus Rhythm":
+                        self.alarmPlaying = True
+                        self.toggle_alarm()
 
             except Exception as e:
                 print(f"error loading file: {str(e)}")
@@ -150,26 +167,23 @@ class MainWindow(QMainWindow):
         denoised_signal = self.non_local_means.apply_non_local_means(
             baseline_removed, noise_variance, window_size, patch_size
         )
-
         return denoised_signal
+    
     def plot_denoised_data(self):
-        if self.denoised_data is None:
+        if self.denoised_data is None or self.denoised_data.empty:
+            return
+
+        selected_lead = self.lead_selector.currentText()
+        
+        # Check if selected_lead is valid
+        if not selected_lead or selected_lead not in self.denoised_data.columns:
             return
 
         self.figure.clear()
-
         ax = self.figure.add_subplot(111)
-
         ax.set_facecolor("#d2d1d1")
 
-
-        # time = np.arange(len(self.denoised_data)) / 500  # Assuming fs=500 Hz
-        # first_lead = self.denoised_data.columns[0]  # Get the name of the first column (e.g., "I")
-        # ax.plot(time, self.denoised_data[first_lead], label="Lead I", color='blue')
-
         time = np.arange(len(self.denoised_data)) / 500
-
-        selected_lead = self.lead_selector.currentText()
         ax.plot(time, self.denoised_data[selected_lead], label=selected_lead, color='blue')
 
         ax.set_xlabel('Time (s)')
