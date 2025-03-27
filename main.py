@@ -9,7 +9,7 @@ from denoising.non_local_means import Non_local_means
 import numpy as np
 import scipy.signal as sig  # Renamed import to avoid conflict
 import pandas as pd
-from statsmodels.nonparametric.smoothers_lowess import lowess
+# from statsmodels.nonparametric.smoothers_lowess import lowess
 from PyQt5 import QtWidgets
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
@@ -71,6 +71,7 @@ class MainWindow(QMainWindow):
         layout = QtWidgets.QVBoxLayout(self.ecg_widget)
         layout.addWidget(self.canvas)
         self.ecg_widget.setLayout(layout)
+        self.figure.set_facecolor("#d2d1d1")
 
 
     def upload_data(self):
@@ -138,7 +139,11 @@ class MainWindow(QMainWindow):
             return
 
         self.figure.clear()
+
         ax = self.figure.add_subplot(111)
+
+        ax.set_facecolor("#d2d1d1")
+
 
         # Assuming we're plotting all leads (I, II, III, aVR, aVL, aVF, V1-V6)
         # time = np.arange(len(self.denoised_data)) / 500  # Assuming fs=500 Hz
