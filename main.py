@@ -9,7 +9,7 @@ from denoising.non_local_means import Non_local_means
 import numpy as np
 import scipy.signal as sig  # Renamed import to avoid conflict
 import pandas as pd
-# from statsmodels.nonparametric.smoothers_lowess import lowess
+from statsmodels.nonparametric.smoothers_lowess import lowess
 from PyQt5 import QtWidgets
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
