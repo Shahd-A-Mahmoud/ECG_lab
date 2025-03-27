@@ -13,7 +13,8 @@ import pandas as pd
 from PyQt5 import QtWidgets
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
-
+from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
+from PyQt5.QtCore import QUrl
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -60,6 +61,15 @@ class MainWindow(QMainWindow):
         pixmap_alarm = icon_alarm.pixmap(256, 256)  # Force a larger resolution from ICO file
         self.alarmButton.setIcon(QIcon(pixmap_alarm))
         self.alarmButton.setIconSize(QSize(1000, 1000))
+
+        self.alarmButton.clicked.connect(self.toggle_alarm)
+
+        # Initialize the alarm sound player
+        self.alarmPlayer = QMediaPlayer()
+        alarm_sound_url = QUrl.fromLocalFile("Deliveriables/alarm.mp3")  # change to your file path
+        self.alarmPlayer.setMedia(QMediaContent(alarm_sound_url))
+         # Flag make it open if there is an aryh detected
+        self.alarmPlaying = False
 
         self.data = None
         self.non_local_means = None
@@ -162,6 +172,28 @@ class MainWindow(QMainWindow):
 
         self.figure.tight_layout()
         self.canvas.draw()
+
+    def toggle_alarm(self):
+
+        if self.alarmPlayer.state() == QMediaPlayer.PlayingState:
+            # pause or stop the alarm sound
+            self.alarmPlayer.pause()  # or .stop() if you want to reset playback
+            self.alarmPlaying = False
+
+            off_icon = QIcon("Deliveriables/DeAlarm.ico")
+            self.alarmButton.setIcon(off_icon)
+            pixmap_of_alarm = off_icon.pixmap(256, 256)  # Force a larger resolution from ICO file
+            self.alarmButton.setIcon(QIcon(pixmap_of_alarm))
+            self.alarmButton.setIconSize(QSize(1000, 1000))
+        else:
+
+            self.alarmPlayer.play()
+            self.alarmPlaying = True
+            # Change icon to show alarm on
+            on_icon = QIcon("Deliveriables/9-removebg-preview.ico")
+            pixmap_on_alarm = on_icon.pixmap(256, 256)  # Force a larger resolution from ICO file
+            self.alarmButton.setIcon(QIcon(pixmap_on_alarm))
+            self.alarmButton.setIconSize(QSize(1000, 1000))
 
 
 

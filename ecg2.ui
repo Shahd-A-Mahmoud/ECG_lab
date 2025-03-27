@@ -827,10 +827,10 @@ QComboBox::item {
            <bool>false</bool>
           </property>
           <property name="currentText">
-           <string>Lead |</string>
+           <string/>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>-1</number>
           </property>
           <property name="maxVisibleItems">
            <number>12</number>
@@ -838,61 +838,6 @@ QComboBox::item {
           <property name="placeholderText">
            <string/>
           </property>
-          <item>
-           <property name="text">
-            <string>Lead |</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Lead ||</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Lead |||</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>aVR</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>aVL</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>V1</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>V2</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>V3</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>V4</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>V5</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>V6</string>
-           </property>
-          </item>
          </widget>
         </widget>
        </item>
