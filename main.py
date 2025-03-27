@@ -1,22 +1,21 @@
-import sys
 
+from PyQt5 import QtWidgets, uic
+import sys
 from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QFileDialog
 from PyQt5.uic import loadUi
 from denoising.non_local_means import Non_local_means
-from PyQt5 import QtWidgets, uic
 import numpy as np
-from scipy import signal
+import scipy.signal as sig  # Renamed import to avoid conflict
 import pandas as pd
-# from statsmodels.nonparametric.smoothers_lowess import lowess
-from PyQt5 import QtWidgets, QtGui, QtCore
+from statsmodels.nonparametric.smoothers_lowess import lowess
+from PyQt5 import QtWidgets
 
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
-        # loadUi('ecg.2ui.ui', self)
         uic.loadUi('ecg2.ui', self)
 
         self.upload_button = self.findChild(QPushButton, "Upload")
@@ -63,31 +62,53 @@ class MainWindow(QMainWindow):
 
 
         self.data = None
-        self.non_local_means = Non_local_means(self.data)
-
+        self.non_local_means = None
+        self.denoised_data = None
 
 
     def upload_data(self):
-        pass
+        file_path, _ = QFileDialog.getOpenFileName(self, "Open ECG Data File", "", "CSV Files (*.csv);;All Files (*)")
+        if file_path:
+            try:
+                df = pd.read_csv(file_path)
+                print(f"loaded data from: {file_path}")
+                self.data = df
+                self.non_local_means = Non_local_means(self.data)
 
-    def denoise_ecg_signal(self, signal, fs=500):
-        # butterworth Low pass filter
+                denoised_data = {}
+                for column in df.columns:
+                    denoised_signal = self.denoise_ecg_signal(df[column].values)
+                    denoised_data[column] = denoised_signal
+
+                # Denoised data back to DataFrame
+                self.denoised_data = pd.DataFrame(denoised_data)
+
+                print(f"original shape: {df.shape}")
+                print(f"denoised shape: {self.denoised_data.shape}")
+
+            except Exception as e:
+                print(f"error loading file: {str(e)}")
+                QtWidgets.QMessageBox.critical(self, "Error", f"Failed to load file: {str(e)}")
+
+    def denoise_ecg_signal(self, ecg_signal, fs=500):
+        # Butterworth Low-pass filter
         nyquist_rate = fs / 2
         passband = 50 / nyquist_rate
-        # stopband = 60 / nyquist_rate
-        b, a = signal.butter(4, passband, btype='low', fs=fs)
-        filtered_signal = signal.filtfilt(b, a, signal)
+        b, a = sig.butter(4, passband, btype='low', fs=fs)
+        filtered_signal = sig.filtfilt(b, a, ecg_signal)
 
         # LOESS --> baseline wander removal
         x = np.arange(len(filtered_signal))
         loess_fit = lowess(filtered_signal, x, frac=0.1, it=0, is_sorted=True)[:, 1]
         baseline_removed = filtered_signal - loess_fit
 
-        # applying non_local_means
+        # Applying non_local_means
         noise_variance = 0.1
         window_size = 5
         patch_size = 3
-        denoised_signal = self.non_local_means.apply_non_local_means(baseline_removed, noise_variance, window_size, patch_size)
+        denoised_signal = self.non_local_means.apply_non_local_means(
+            baseline_removed, noise_variance, window_size, patch_size
+        )
 
         return denoised_signal
 
