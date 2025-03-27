@@ -416,6 +416,25 @@ QPushButton::icon {
           <property name="styleSheet">
            <string notr="true">    background-color: #d2d1d1;</string>
           </property>
+          <widget class="QLabel" name="ImageLabel">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>151</width>
+             <height>171</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap>Deliveriables/2.png</pixmap>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+          </widget>
          </widget>
          <widget class="QLabel" name="Name">
           <property name="geometry">
@@ -754,39 +773,126 @@ font-weight: bold;
             <x>30</x>
             <y>450</y>
             <width>851</width>
-            <height>22</height>
+            <height>31</height>
            </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Poppins</family>
+            <pointsize>-1</pointsize>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
           </property>
           <property name="styleSheet">
            <string notr="true">QComboBox {
     background-color: #d2d1d1;
     color: #ce0000;
     font-size: 14px;
-  
+    font-family: &quot;Poppins&quot;;
+    font-weight: bold;
     border-radius: 15px;
     padding: 5px;
+    /* Use qproperty-alignment to center the displayed text */
+    qproperty-alignment: 'AlignCenter';
 }
+
 QComboBox::drop-down {
     border: none;
     background-color: #ce0000;
     width: 25px;
     border-radius: 15px;
 }
+
 QComboBox QAbstractItemView {
-    background-color: maroon;
-    color: pink;
+    background-color:#ce0000;
+    color:#ffcdd2;
     selection-background-color: #d2d1d1;
     selection-color: #ce0000;
     border-radius: 10px;
+    /* Center items in the dropdown */
+    text-align: center;
+}
+
+/* Optional: Center text in each dropdown item */
+QComboBox::item {
+    text-align: center;
 }
 </string>
           </property>
+          <property name="editable">
+           <bool>false</bool>
+          </property>
           <property name="currentText">
-           <string/>
+           <string>Lead |</string>
           </property>
           <property name="currentIndex">
-           <number>-1</number>
+           <number>0</number>
           </property>
+          <property name="maxVisibleItems">
+           <number>12</number>
+          </property>
+          <property name="placeholderText">
+           <string/>
+          </property>
+          <item>
+           <property name="text">
+            <string>Lead |</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Lead ||</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Lead |||</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>aVR</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>aVL</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>V1</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>V2</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>V3</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>V4</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>V5</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>V6</string>
+           </property>
+          </item>
          </widget>
         </widget>
        </item>
