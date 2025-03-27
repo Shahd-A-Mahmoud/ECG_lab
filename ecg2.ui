@@ -27,7 +27,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>Deliveriables/heartrate.ico</normaloff>Deliveriables/heartrate.ico</iconset>
+    <normaloff>C:/Users/Lenovo/Downloads/ecgLab (3).ico</normaloff>C:/Users/Lenovo/Downloads/ecgLab (3).ico</iconset>
   </property>
   <property name="iconSize">
    <size>
@@ -416,6 +416,25 @@ QPushButton::icon {
           <property name="styleSheet">
            <string notr="true">    background-color: #d2d1d1;</string>
           </property>
+          <widget class="QLabel" name="ImageLabel">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>151</width>
+             <height>171</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap>Deliveriables/2.png</pixmap>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+          </widget>
          </widget>
          <widget class="QLabel" name="Name">
           <property name="geometry">
@@ -654,55 +673,11 @@ color:#ce0000;</string>
     border-radius: 15px;</string>
           </property>
          </widget>
-         <widget class="QSlider" name="horizontalSlider">
-          <property name="geometry">
-           <rect>
-            <x>30</x>
-            <y>450</y>
-            <width>851</width>
-            <height>18</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">/* Customize Horizontal Slider */
-QSlider::groove:horizontal {
-    background: #d2d1d1;  /* Background color */
-    height: 10px;          /* Groove height */
-    border-radius: 5px;
-}
-
-QSlider::handle:horizontal {
-    background: #C30000;  /* Handle (thumb) color */
-    border: none;
-    width: 20px;          /* Handle width */
-    height: 20px;         /* Handle height */
-    margin: -5px 0;       /* Adjust position to be centered */
-    border-radius: 10px;  /* Circular handle */
-}
-
-QSlider::handle:horizontal:hover {
-    background: #A00000;  /* Darker color on hover */
-}
-
-QSlider::add-page:horizontal {
-    background: #d2d1d1; /* Right side of the slider */
-}
-
-QSlider::sub-page:horizontal {
-    background: #C30000; /* Left side of the slider */
-    border-radius: 5px;
-}
-</string>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
          <widget class="QLabel" name="Name_2">
           <property name="geometry">
            <rect>
             <x>30</x>
-            <y>480</y>
+            <y>490</y>
             <width>321</width>
             <height>51</height>
            </rect>
@@ -766,7 +741,7 @@ font-weight: bold;
          <widget class="QPushButton" name="AlarmButton">
           <property name="geometry">
            <rect>
-            <x>730</x>
+            <x>750</x>
             <y>490</y>
             <width>101</width>
             <height>71</height>
@@ -791,6 +766,133 @@ font-weight: bold;
             <height>1000</height>
            </size>
           </property>
+         </widget>
+         <widget class="QComboBox" name="comboBoxLeads">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>450</y>
+            <width>851</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Poppins</family>
+            <pointsize>-1</pointsize>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QComboBox {
+    background-color: #d2d1d1;
+    color: #ce0000;
+    font-size: 14px;
+    font-family: &quot;Poppins&quot;;
+    font-weight: bold;
+    border-radius: 15px;
+    padding: 5px;
+    /* Use qproperty-alignment to center the displayed text */
+    qproperty-alignment: 'AlignCenter';
+}
+
+QComboBox::drop-down {
+    border: none;
+    background-color: #ce0000;
+    width: 25px;
+    border-radius: 15px;
+}
+
+QComboBox QAbstractItemView {
+    background-color:#ce0000;
+    color:#ffcdd2;
+    selection-background-color: #d2d1d1;
+    selection-color: #ce0000;
+    border-radius: 10px;
+    /* Center items in the dropdown */
+    text-align: center;
+}
+
+/* Optional: Center text in each dropdown item */
+QComboBox::item {
+    text-align: center;
+}
+</string>
+          </property>
+          <property name="editable">
+           <bool>false</bool>
+          </property>
+          <property name="currentText">
+           <string>Lead |</string>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <property name="maxVisibleItems">
+           <number>12</number>
+          </property>
+          <property name="placeholderText">
+           <string/>
+          </property>
+          <item>
+           <property name="text">
+            <string>Lead |</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Lead ||</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Lead |||</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>aVR</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>aVL</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>V1</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>V2</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>V3</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>V4</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>V5</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>V6</string>
+           </property>
+          </item>
          </widget>
         </widget>
        </item>
