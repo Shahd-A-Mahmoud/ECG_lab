@@ -20,7 +20,7 @@ from processing.processing import classify_ecg
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
-        uic.loadUi('Equipment II/ECG_lab/ecg2.ui', self)
+        uic.loadUi('ecg2.ui', self)
 
         self.heart_rate = 0
         self.diagnosis = "Unclassified"
@@ -70,7 +70,7 @@ class MainWindow(QMainWindow):
 
         # Initialize the alarm sound player
         self.alarmPlayer = QMediaPlayer()
-        alarm_sound_url = QUrl.fromLocalFile("Equipment II/ECG_lab/Deliveriables/alarm.mp3")  
+        alarm_sound_url = QUrl.fromLocalFile("Deliveriables/alarm.mp3")
         self.alarmPlayer.setMedia(QMediaContent(alarm_sound_url))
          # Flag make it open if there is an aryh detected
         self.alarmPlaying = False

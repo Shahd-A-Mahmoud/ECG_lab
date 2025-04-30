@@ -57,7 +57,7 @@ def classify_ecg(ecg_signal, sampling_rate=500):
     return diagnosis, hr
 
 # Load ECG Data
-df = pd.read_csv("Equipment II/ECG_lab/data/Atrial Tachtcardia (AT)/MUSE_20180111_170414_84000.csv", header=None)
+df = pd.read_csv("data/Atrial Tachtcardia (AT)/MUSE_20180111_170414_84000.csv", header=None)
 
 # Ensure numeric conversion
 df = df.apply(pd.to_numeric, errors='coerce').dropna()
