@@ -88,7 +88,7 @@ class MainWindow(QMainWindow):
         layout = QtWidgets.QVBoxLayout(self.ecg_widget)
         layout.addWidget(self.canvas)
         self.ecg_widget.setLayout(layout)
-        self.figure.set_facecolor("#d2d1d1")
+        self.figure.set_facecolor(" #1e1e1e")
 
         self.lead_selector = self.findChild(QComboBox, "comboBoxLeads")
         self.lead_selector.currentIndexChanged.connect(self.plot_denoised_data)
