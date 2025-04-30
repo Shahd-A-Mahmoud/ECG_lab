@@ -181,7 +181,7 @@ class MainWindow(QMainWindow):
 
         self.figure.clear()
         ax = self.figure.add_subplot(111)
-        ax.set_facecolor("#d2d1d1")
+        ax.set_facecolor(" #1e1e1e")
 
         time = np.arange(len(self.denoised_data)) / 500
         ax.plot(time, self.denoised_data[selected_lead], label=selected_lead, color='blue')
